@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppleiTunesSearchURLComponents<Media: MediaType> {
+public struct iTunesSearchURLComponents<Media: MediaType> {
     private let scheme = "https"
     private let host = "itunes.apple.com"
     private let path = "/search"
@@ -214,13 +214,13 @@ public struct AppleiTunesSearchURLComponents<Media: MediaType> {
     }
 }
 
-extension AppleiTunesSearchURLComponents.Version: ExpressibleByIntegerLiteral {
+extension iTunesSearchURLComponents.Version: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         self.init(rawValue: value)!
     }
 }
 
-extension AppleiTunesSearchURLComponents: CustomStringConvertible {
+extension iTunesSearchURLComponents: CustomStringConvertible {
     public var description: String {
         return url?.absoluteString ?? ""
     }

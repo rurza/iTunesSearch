@@ -1,6 +1,6 @@
 import XCTest
-@testable import AppleiTunesSearchURLComponentsTests
+@testable import iTunesSearch
 
 XCTMain([
-    testCase(AppleiTunesSearchURLComponentsTests.allTests),
+    testCase(iTunesSearchURLComponentsTests.allTests),
 ])

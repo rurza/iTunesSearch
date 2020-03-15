@@ -1,14 +1,19 @@
 import XCTest
-@testable import AppleiTunesSearchURLComponents
+@testable import iTunesSearch
 
-class AppleiTunesSearchURLComponentsTests: XCTestCase {
+class iTunesSearchURLComponentsTests: XCTestCase {
+    
+    let locale = Locale(identifier: "en_us")
+    
     func testMovie() {
-        let components = AppleiTunesSearchURLComponents<Movie>(term: "Shrek")
+        var components = iTunesSearchURLComponents<Movie>(term: "Shrek")
+        components.locale = locale
         XCTAssertEqual(components.url?.absoluteString, "https://itunes.apple.com/search?term=Shrek&country=US&lang=en_us")
     }
     
     func testMusicArtist() {
-        let components = AppleiTunesSearchURLComponents<Music>(term: "Smash Mouth", entity: .artist)
+        var components = iTunesSearchURLComponents<Music>(term: "Smash Mouth", entity: .artist)
+        components.locale = locale
         XCTAssertEqual(components.url?.absoluteString, "https://itunes.apple.com/search?term=Smash%20Mouth&country=US&entity=musicArtist&lang=en_us")
     }
 
