@@ -1,8 +1,8 @@
-# AppleiTunesSearchURLComponents
+# iTunesSearch
 
-[![Build Status][build status badge]][build status]
+[iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)
 
-Router for the [iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/).
+## Router
 
 This functionality is discussed in Chapter 4 of
 [Flight School Guide to Swift Codable](https://flight.school/books/codable).
