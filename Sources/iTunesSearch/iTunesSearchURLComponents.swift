@@ -1,6 +1,6 @@
 import Foundation
 
-public struct iTunesSearchURLComponents<Media: MediaType> {
+internal struct iTunesSearchURLComponents<Media: MediaType> {
     private let scheme = "https"
     private let host = "itunes.apple.com"
     private let path = "/search"
@@ -9,7 +9,7 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      The URL-encoded text string you want to search for.
      For example: jack+johnson.
      */
-    public var term: String
+    internal var term: String
     
     /**
      The search uses the default store front for the specified country.
@@ -19,7 +19,7 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      Specify the language using the five-letter codename.
      For example: en_us.The default is en_us (English).
      */
-    public var locale: Locale {
+    internal var locale: Locale {
         willSet {
             precondition(newValue.regionCode != nil, "locale must have region code")
         }
@@ -32,7 +32,7 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      For example: movieArtist for a movie media type search.
      The default is the track entity associated with the specified media type.
      */
-    public var entity: Media.Entity?
+    internal var entity: Media.Entity?
     
     /**
      The attribute you want to search for in the stores,
@@ -45,7 +45,7 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      a song with the word “maroon” in the title.
      The default is all attributes associated with the specified media type.
      */
-    public var attribute: Media.Attribute?
+    internal var attribute: Media.Attribute?
     
     /**
      The name of the Javascript callback function you want to use
@@ -53,14 +53,14 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      
      For example: wsSearchCB.
      */
-    public var callback: String?
+    internal var callback: String?
     
     /**
      The number of search results you want the iTunes Store to return.
      
      For example: 25.The default is 50.
      */
-    public var limit: Int? {
+    internal var limit: Int? {
         willSet {
             precondition((1...200).contains(newValue ?? 50), "limit must be between 1 and 200")
         }
@@ -71,9 +71,9 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      
      The default is 2.
      */
-    public var version: Version?
+    internal var version: Version?
     
-    public enum Version: Int, Codable {
+    internal enum Version: Int, Codable {
         case v1 = 1
         case v2 = 2
     }
@@ -84,7 +84,7 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
      
      The default is Yes.
      */
-    public var explicit: Bool?
+    internal var explicit: Bool?
     
     // MARK: -
     
@@ -129,14 +129,14 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
     
     // MARK: -
     
-    public init(term: String,
-         locale: Locale = Locale.current,
-         entity: Media.Entity? = nil,
-         attribute: Media.Attribute? = nil,
-         callback: String? = nil,
-         limit: Int? = nil,
-         version: Version? = nil,
-         explicit: Bool? = nil)
+    internal init(term: String,
+                  locale: Locale = Locale(identifier: "en_US"),
+                  entity: Media.Entity? = nil,
+                  attribute: Media.Attribute? = nil,
+                  callback: String? = nil,
+                  limit: Int? = nil,
+                  version: Version? = nil,
+                  explicit: Bool? = nil)
     {
         self.term = term
         self.locale = locale
@@ -150,7 +150,7 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
     
     // MARK: -
     
-    public var url: URL? {
+    internal var url: URL? {
         return self.components.url
     }
     
@@ -215,13 +215,13 @@ public struct iTunesSearchURLComponents<Media: MediaType> {
 }
 
 extension iTunesSearchURLComponents.Version: ExpressibleByIntegerLiteral {
-    public init(integerLiteral value: Int) {
+    internal init(integerLiteral value: Int) {
         self.init(rawValue: value)!
     }
 }
 
 extension iTunesSearchURLComponents: CustomStringConvertible {
-    public var description: String {
+    internal var description: String {
         return url?.absoluteString ?? ""
     }
 }
